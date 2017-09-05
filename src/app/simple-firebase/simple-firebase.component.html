@@ -1,0 +1,18 @@
+<div id="container-component">
+  <ul>
+    <li class="text" *ngFor="let item of items | async">
+      {{item.$key}}: {{item.$value}}
+    </li>
+  </ul>
+  <div [@explainerAnim]>
+    <div class="col">
+      <p>I think we are best</p>
+    </div>
+    <div class="col">
+      <p>An excellent team</p>
+    </div>
+    <div class="col">
+      <p>we will success</p>
+    </div>
+  </div>
+</div>
