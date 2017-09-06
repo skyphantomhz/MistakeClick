@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { LoginPageComponent } from "./login-page/login-page.component";
+import { SimpleFirebaseComponent } from "./simple-firebase/simple-firebase.component";
 
 const routes: Routes = [
   {
-    path: '',
-    children: []
+    path: 'login',
+    component: LoginPageComponent
+  },
+  {
+    path: '**',
+    component: SimpleFirebaseComponent
   }
 ];
 
