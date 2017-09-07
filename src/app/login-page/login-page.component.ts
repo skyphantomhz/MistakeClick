@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
 import {GoogleSignInSuccess} from 'angular-google-signin';
-import { environment } from '../../environments/environment';
+import { AuthService, SocialUser } from "angular4-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angular4-social-login";
+import { AuthenticationService } from "../services/authentication.service";
 declare var particlesJS: any;
 
 @Component({
@@ -9,31 +12,46 @@ declare var particlesJS: any;
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  ImageUrl: String;
-  private myClientId: string ;
-  constructor() {
-    this.myClientId = environment.myClientId;
-   }
 
-  ngOnInit() {
+  constructor(private authService: AuthService, private router:Router, private authenticationService:AuthenticationService) {
     particlesJS.load('particles-js', 'assets/configUI/particles.json', function () {
       console.log('callback - particles.js config loaded');
     });
+
+   }
+
+  ngOnInit() {
+    if(this.authenticationService.checkLogin()){
+      this.redirectToAfterComplateLogin();
+    }
   }
-  onGoogleSignInSuccess(event: GoogleSignInSuccess) {
-    let googleUser: gapi.auth2.GoogleUser = event.googleUser;
-    let id: string = googleUser.getId();
-    let profile: gapi.auth2.BasicProfile = googleUser.getBasicProfile();
-    console.log('ID: ' +
-      profile
-        .getId()); // Do not send to your backend! Use an ID token instead.
-        console.log('Full Name: ' + profile.getName());
-        console.log("Image URL: " + profile.getImageUrl());
-        console.log("Email: " + profile.getEmail());
-        this.ImageUrl=profile.getEmail();
-        // The ID token you need to pass to your backend:
-        var id_token = googleUser.getAuthResponse().id_token;
-        console.log("ID Token: " + id_token);
+  
+
+
+  
+
+  signInWithGoogle(): void {
+    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID).then( value =>{
+      this.getUserAfterLogin();
+    });
   }
 
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID).then( value =>{
+      this.getUserAfterLogin();
+    });
+  }
+
+  redirectToAfterComplateLogin(): void{
+    this.router.navigate(['homepage']);
+  }
+
+  getUserAfterLogin(){
+    this.authService.authState.subscribe((user) => {
+      this.authenticationService.completedLogin(user);
+      this.redirectToAfterComplateLogin();
+    }, (error) => {
+      throw error;
+    });
+  }
 }

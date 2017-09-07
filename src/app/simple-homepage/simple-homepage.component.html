@@ -1,3 +1,8 @@
-<p>
-  simple-homepage works!
-</p>
+<div id="aboutAccount" *ngIf="user; else login">
+    <img src="{{ user.photoUrl }}">
+    <div>
+      <h4>{{ user.name }}</h4>
+      <p>{{ user.email }}</p>
+      <span class="logout" (click)="signOut()">Logout</span>
+    </div>
+  </div>
