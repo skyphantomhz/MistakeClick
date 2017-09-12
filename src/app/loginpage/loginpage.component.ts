@@ -7,8 +7,8 @@ declare var particlesJS: any;
 
 @Component({
   selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  templateUrl: './loginpage.component.html',
+  styleUrls: ['./loginpage.component.scss']
 })
 export class LoginPageComponent implements OnInit {
 

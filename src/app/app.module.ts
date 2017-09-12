@@ -14,10 +14,11 @@ import { environment } from '../environments/environment';
 //create new
 import { AppComponent } from './app.component';
 import { SimpleFirebaseComponent } from './simple-firebase/simple-firebase.component';
-import { LoginPageComponent } from "./login-page/login-page.component";
+import { LoginPageComponent } from "./loginpage/loginpage.component";
 import { SimpleHomepageComponent } from './simple-homepage/simple-homepage.component';
 import { CheckLoginService } from "./services/check-login.service";
 import { AuthenticationService } from "./services/authentication.service";
+import { HomepageComponent } from './homepage/homepage.component';
 
 let config = new AuthServiceConfig([
   {
@@ -39,7 +40,8 @@ export function provideConfig() {
     AppComponent,
     SimpleFirebaseComponent,
     LoginPageComponent,
-    SimpleHomepageComponent
+    SimpleHomepageComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
