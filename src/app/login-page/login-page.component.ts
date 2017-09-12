@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
-import {GoogleSignInSuccess} from 'angular-google-signin';
 import { AuthService, SocialUser } from "angular4-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angular4-social-login";
 import { AuthenticationService } from "../services/authentication.service";
