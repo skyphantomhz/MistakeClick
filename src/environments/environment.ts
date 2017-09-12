@@ -12,5 +12,5 @@ export const environment = {
     projectId: "mistakeclick-2346",
     storageBucket: "",
     messagingSenderId: "554888823472"
-  },
+  }
 };
