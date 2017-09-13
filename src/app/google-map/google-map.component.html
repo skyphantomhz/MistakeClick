@@ -1,0 +1,18 @@
+<div *ngIf="lat && lng && user">
+  <span class="logout" (click)="signOut()">Logout</span>
+  <agm-map [latitude]="lat" [longitude]='lng'>
+    <agm-marker [latitude]="lat" [longitude]='lng'>
+      <agm-info-window>
+          <app-detail-point-user [detailPoint]="user"></app-detail-point-user>
+      </agm-info-window>
+    </agm-marker>
+    <agm-marker *ngFor="let marker of markers"
+     [latitude]="marker.location[0]"
+     [longitude]="marker.location[1]"
+     [iconUrl]="'https://cdn1.iconfinder.com/data/icons/designer-s-tools-1/512/Coffee-64.png'">
+     <agm-info-window>
+       <h6>appointment!</h6>
+     </agm-info-window>
+    </agm-marker>
+  </agm-map>
+</div>
