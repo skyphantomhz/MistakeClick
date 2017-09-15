@@ -1,12 +1,14 @@
 //Library from npm
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID  } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
-import { AgmCoreModule } from '@agm/core'
+import { AgmCoreModule } from '@agm/core';
+import { MdNativeDateModule, MdDialogModule, MdInputModule, MdDatepickerModule, MdButtonModule} from '@angular/material';
+import { FormsModule, NgControl, ReactiveFormsModule }   from '@angular/forms';
 
 //config
 import { AppRoutingModule } from './app-routing.module';
@@ -24,6 +26,7 @@ import { SimpleHomepageComponent } from './simple-homepage/simple-homepage.compo
 import { HomepageComponent } from './homepage/homepage.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { DetailPointUserComponent } from './detail-point-user/detail-point-user.component';
+import { DialogMakeAppointmentComponent } from './dialog-make-appointment/dialog-make-appointment.component';
 
 
 let config = new AuthServiceConfig([
@@ -49,10 +52,15 @@ export function provideConfig() {
     SimpleHomepageComponent,
     HomepageComponent,
     GoogleMapComponent,
-    DetailPointUserComponent
+    DetailPointUserComponent,
+    DialogMakeAppointmentComponent
+  ],
+  entryComponents: [
+    DialogMakeAppointmentComponent
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     SocialLoginModule,
@@ -60,12 +68,21 @@ export function provideConfig() {
     AgmCoreModule.forRoot({
       apiKey: environment.googleMapsKey
     }),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MdDialogModule,
+    MdDatepickerModule,
+    MdInputModule,
+    FormsModule,
+    MdNativeDateModule,
+    MdButtonModule
+    
   ],
   providers: [{
     provide: AuthServiceConfig,
     useFactory: provideConfig
-  }, CheckLoginService, AuthenticationService, GeoService],
+  },
+  {provide: LOCALE_ID, useValue: 'en-US'},
+  CheckLoginService, AuthenticationService, GeoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

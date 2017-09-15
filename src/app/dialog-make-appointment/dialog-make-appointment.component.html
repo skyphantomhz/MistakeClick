@@ -1,0 +1,33 @@
+<h2 md-dialog-title>
+  Make Appointment</h2>
+<md-dialog-content class="example-form">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Name Appointment" [formControl]="nameAppointmentFormControl">
+          <md-error *ngIf="nameAppointmentFormControl.hasError('required')">
+            Name appointment is <strong>required</strong>
+          </md-error>
+        </md-form-field>
+      </td>
+      <td>
+        <md-form-field class="example-full-width">
+          <input mdInput placeholder="Address" [formControl]="addressFormControl">
+          <md-error *ngIf="addressFormControl.hasError('required')">
+            Address is <strong>required</strong>
+          </md-error>
+        </md-form-field>
+      </td>
+    </tr>
+  </table>
+  <md-form-field>
+    <input mdInput (dateInput)="getDate($event)" [mdDatepicker]="picker" placeholder="Choose a date">
+    <md-datepicker-toggle mdSuffix [for]="picker"></md-datepicker-toggle>
+    <md-datepicker #picker></md-datepicker>
+  </md-form-field>
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-raised-button [disabled]="checkFullFill" color="primary" (click)="acceptClick()">Make</button>
+  <button md-raised-button (click)="onNoClick()">Cancell</button>
+</md-dialog-actions>
