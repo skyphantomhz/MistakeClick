@@ -6,6 +6,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocialLoginModule, AuthServiceConfig } from "angular4-social-login";
 import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-login";
+import {DatePipe} from "@angular/common";
+import {MdInputModule, MdButtonModule} from '@angular/material';
+import { FormsModule, ReactiveFormsModule }from '@angular/forms';
 
 //config
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +22,11 @@ import { SimpleHomepageComponent } from './simple-homepage/simple-homepage.compo
 import { CheckLoginService } from "./services/check-login.service";
 import { AuthenticationService } from "./services/authentication.service";
 import { HomepageComponent } from './homepage/homepage.component';
+import { MessageComponent } from './message/message.component';
+import { DetailMessageComponent } from './detail-message/detail-message.component';
+import { DetailMessageMineComponent } from './detail-message-mine/detail-message-mine.component';
+import { SendmessageComponent } from './sendmessage/sendmessage.component';
+
 
 let config = new AuthServiceConfig([
   {
@@ -41,7 +49,11 @@ export function provideConfig() {
     SimpleFirebaseComponent,
     LoginPageComponent,
     SimpleHomepageComponent,
-    HomepageComponent
+    HomepageComponent,
+    MessageComponent,
+    DetailMessageComponent,
+    DetailMessageMineComponent,
+    SendmessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,12 +61,16 @@ export function provideConfig() {
     BrowserAnimationsModule,
     SocialLoginModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    MdInputModule,
+    MdButtonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: AuthServiceConfig,
     useFactory: provideConfig
-  }, CheckLoginService, AuthenticationService],
+  }, CheckLoginService, AuthenticationService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

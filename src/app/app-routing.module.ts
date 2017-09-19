@@ -10,7 +10,7 @@ const routes: Routes = [
 
   {
     path: '',
-    component: HomepageComponent
+    component: LoginPageComponent
   },
   {
     path: 'login',
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: 'homepage',
-    component: SimpleHomepageComponent,
+    component: HomepageComponent,
     canActivate: [CheckLoginService]
   },
   {
