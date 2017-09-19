@@ -11,7 +11,7 @@ import { AuthenticationService } from "../services/authentication.service";
 })
 export class HomepageComponent implements OnInit {
 
-  private user: SocialUser;
+  public user: SocialUser;
   private loggedIn: boolean;
   private logout: boolean;
   constructor(private authService: AuthService, private router: Router, private authenticationService: AuthenticationService) {
@@ -26,11 +26,11 @@ export class HomepageComponent implements OnInit {
 
   }
   signOut(): void {
-    this.authService.signOut().then((value) => { 
+    this.authService.signOut().then((value) => {
       this.authenticationService.logout();
-      this.router.navigate(['']); 
+      this.router.navigate(['']);
     });
-    
+
   }
 
 }
