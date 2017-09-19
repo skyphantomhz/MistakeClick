@@ -19,6 +19,9 @@ import { SimpleHomepageComponent } from './simple-homepage/simple-homepage.compo
 import { CheckLoginService } from "./services/check-login.service";
 import { AuthenticationService } from "./services/authentication.service";
 import { HomepageComponent } from './homepage/homepage.component';
+import { MessageComponent } from './message/message.component';
+import { DetailMessageComponent } from './detail-message/detail-message.component';
+import { DetailMessageMineComponent } from './detail-message-mine/detail-message-mine.component';
 
 let config = new AuthServiceConfig([
   {
@@ -41,7 +44,10 @@ export function provideConfig() {
     SimpleFirebaseComponent,
     LoginPageComponent,
     SimpleHomepageComponent,
-    HomepageComponent
+    HomepageComponent,
+    MessageComponent,
+    DetailMessageComponent,
+    DetailMessageMineComponent
   ],
   imports: [
     BrowserModule,
