@@ -1,7 +1,34 @@
-<form class="example-form">
-  <md-form-field class="example-full-width">
-    <input mdInput placeholder="....." [formControl]="contenMessageControl" >
-  </md-form-field>
-</form>
-<button md-button (click)="sendMessage()">Send</button>
+<div class="row">
+  <div class="col-8 col-md-8 col-lg-8 col-xl-8 ">
+    <div class="row" style="border: solid 1px; border-radius: 10px; margin: 10px;">
+      <div class="col-1 col-md-1 col-lg-1 col-xl-1">
+        <!-- <input id="changeColor" #ignoredInput [(colorPicker)]="color" [(cpToggle)]="toggle" [style.background]="color" [cpPosition]="'bottom'"
+          [style.color]="color" [cpPositionOffset]="'100%'" [cpIgnoredElements]="[ignoredButton, ignoredInput]" [value]="color"
+          [cpPresetColors]="['#000', '#088A08', '#DF7401', '#DF0101', '#FFBF00', '#DF013A']" disabled/> -->
+        <span #ignoredInput [(colorPicker)]="color" [cpPosition]="'bottom'" [style.color]="color"
+         [cpPositionOffset]="'50%'" 
+         [cpPresetColors]="['#F25D5F', '#4AE4AD', '#0D0D0D', '#F2B705', '#F25C05', '#5833A6']"
+          [cpOKButton]="true" [cpSaveClickOutside]="false" [cpPresetLabel]="'you can change your color'"[cpFallbackColor]="'#fff'">
+      <span id="setting" md-button (click)="toggle=!toggle;lastColor=color" #ignoredButton>
+        <i class="fa fa-cog fa-2x" aria-hidden="true"></i>
+      </span></span>
 
+
+
+      </div>
+      <div class="col-11 col-md-11 col-lg-11 col-xl-11 ">
+        <form  class="example-form">
+          <md-form-field class="example-full-width">
+            <input  mdInput [formControl]="contenMessageControl">
+          </md-form-field>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-2 col-md-1 col-lg-2 col-xl-2" style="padding-top: 20px;">
+    <span md-button (click)="sendMessage()">
+       <i class="fa fa-telegram fa-3x" aria-hidden="true"></i> 
+   
+      </span>
+  </div>
+</div>

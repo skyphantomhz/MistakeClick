@@ -9,7 +9,7 @@ import { GoogleLoginProvider, FacebookLoginProvider } from "angular4-social-logi
 import {DatePipe} from "@angular/common";
 import {MdInputModule, MdButtonModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule }from '@angular/forms';
-
+//import {BootstrapModalModule} from 'ng2-bootstrap-modal';
 //config
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
@@ -26,6 +26,8 @@ import { MessageComponent } from './message/message.component';
 import { DetailMessageComponent } from './detail-message/detail-message.component';
 import { DetailMessageMineComponent } from './detail-message-mine/detail-message-mine.component';
 import { SendmessageComponent } from './sendmessage/sendmessage.component';
+import {ColorPickerModule} from 'angular4-color-picker';
+
 
 
 let config = new AuthServiceConfig([
@@ -65,7 +67,9 @@ export function provideConfig() {
     MdInputModule,
     MdButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    //BootstrapModalModule,
+    ReactiveFormsModule,
+    ColorPickerModule
   ],
   providers: [{
     provide: AuthServiceConfig,

@@ -5,8 +5,7 @@ export class Message{
         public email: string,
         public linkAva: string,
         public content: string,
+        public color: string,
         public dateCreate: string
-    ){
-
-    }
+    ){}
 }

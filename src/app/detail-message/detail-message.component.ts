@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Message } from "../model/message.model";
+import { Message } from '../model/message.model';
 
 @Component({
   selector: 'app-detail-message',
@@ -9,11 +9,12 @@ import { Message } from "../model/message.model";
 })
 export class DetailMessageComponent implements OnInit {
   @Input() message: Message;
+  color: string;
   ngOnInit(): void {
     
   }
   constructor() {
-
+    this.color = '';
   }
 }
 
