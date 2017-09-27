@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database'
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
 import * as GeoFire from "geofire"
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import { Appointment, AppointmentJSON } from "../model/appointment";
@@ -7,7 +7,6 @@ import { Appointment, AppointmentJSON } from "../model/appointment";
 export class GeoService {
   dbRef: any;
   geoFire: any;
-
   hits = new BehaviorSubject([])
   constructor( private db: AngularFireDatabase) {
     this.dbRef = this.db.list('/locations');
@@ -25,10 +24,9 @@ export class GeoService {
     itemObservable.push(AppointmentJSON.encodeAppointment(apm));
   }
 
-  getAppointments(apm: Appointment){
-    const itemObservable = this.db.list('/appointmentDetail');
-    itemObservable.push(JSON.stringify(apm));
-  }
+  // getAppointments(): FirebaseListObservable<Appointment[]>{
+  //   return this.db.list('/appointmentDetail');
+  // }
 
   getLocations(radius: number, coords:Array<number>){
     this.geoFire.query({

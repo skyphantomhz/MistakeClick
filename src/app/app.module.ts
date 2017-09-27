@@ -27,6 +27,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { DetailPointUserComponent } from './detail-point-user/detail-point-user.component';
 import { DialogMakeAppointmentComponent } from './dialog-make-appointment/dialog-make-appointment.component';
+import { DetailPointAppointmentComponent } from './detail-point-appointment/detail-point-appointment.component';
+import { AppointmentComponent } from './appointment/appointment.component';
 
 
 let config = new AuthServiceConfig([
@@ -53,7 +55,9 @@ export function provideConfig() {
     HomepageComponent,
     GoogleMapComponent,
     DetailPointUserComponent,
-    DialogMakeAppointmentComponent
+    DialogMakeAppointmentComponent,
+    DetailPointAppointmentComponent,
+    AppointmentComponent
   ],
   entryComponents: [
     DialogMakeAppointmentComponent

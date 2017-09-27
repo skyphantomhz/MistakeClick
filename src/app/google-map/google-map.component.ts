@@ -7,6 +7,8 @@ import { AuthenticationService } from "../services/authentication.service";
 import {MdDialog, MdDialogRef, MD_DIALOG_DATA} from '@angular/material';
 import { DialogMakeAppointmentComponent } from "../dialog-make-appointment/dialog-make-appointment.component";
 import { Appointment } from "../model/appointment";
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database'
+import { Users } from "../model/users";
 @Component({
   selector: 'app-google-map',
   templateUrl: './google-map.component.html',
@@ -18,20 +20,45 @@ export class GoogleMapComponent implements OnInit {
   lng: number;
   markers: any;
 
+  users: any;
+  items: FirebaseListObservable<Users[]>;
+
   private user: SocialUser;
   private loggedIn: boolean;
 
   apppointmentNeedSave: Appointment;
 
-  constructor(private geo: GeoService,private authService: AuthService, private router: Router, private authenticationService: AuthenticationService,private dialog: MdDialog) {
+  appointments: FirebaseListObservable<Appointment[]>;
+
+  constructor(private db: AngularFireDatabase,private geo: GeoService,private authService: AuthService, private router: Router, private authenticationService: AuthenticationService,private dialog: MdDialog) {
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
     });
+
+    this.items = db.list('/users');
+    this.items.forEach(item => {
+        console.log('Item:', item);
+    });
+    this.users = db.object('/users/'+this.user.name);
+    if(navigator.geolocation){
+      navigator.geolocation.getCurrentPosition(position =>{
+        this.lat = position.coords.latitude;
+        this.lng = position.coords.longitude;
+        this.users.set({ email: this.user.email,
+                          link: this.user.photoUrl,
+                          lat: this.lat,
+                          lng: this.lng,
+                          name: this.user.name}); 
+      })
+    }
+    console.log(this.user);
+
   }
   ngOnInit() {
     this.getUserLocation();
-    this.geo.hits.subscribe(hits => this.markers =hits)
+    this.geo.hits.subscribe(hits => this.markers =hits);
+    this.appointments=this.db.list('/appointmentDetail');
   }
   getUserLocation() {
     if(navigator.geolocation){
