@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, AfterContentChecked } from '@angular/core';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 import { Subject } from "rxjs/Subject";
 import { Message } from "../model/message.model";
@@ -14,11 +14,15 @@ import { Router } from '@angular/router';
 export class MessageComponent implements OnInit {
   @Input() userLogin;
   datas: FirebaseListObservable<Message[]>;
-  constructor(private db: AngularFireDatabase) {
-    
-  }
+  numberClickMessage : number = 2 ;
 
+  //
+  @ViewChild('scroller') private feedContainer: ElementRef;
+
+  constructor(private db: AngularFireDatabase) {
+  }
   ngOnInit() {
+    this.datas=null;
     this.datas = this.db.list('/message', {
       query: {
         limitToLast: 10,
@@ -26,5 +30,22 @@ export class MessageComponent implements OnInit {
       }
     });
   }
+  loadMessageOld(){
+    this.datas=null;
+    this.datas = this.db.list('/message', {
+      query: {
+        limitToLast: 10 * this.numberClickMessage,
+        orderByKey: true,
+      }
+    });
+    this.numberClickMessage++;
+  }
 
+  scrollToBottom(): void {
+    this.feedContainer.nativeElement.scrollTop = this.feedContainer.nativeElement.scrollHeight;
+  }
+
+  ngAfterViewChecked(){
+    this.scrollToBottom();
+  }
 }
