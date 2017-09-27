@@ -1,6 +1,7 @@
+
 <div id="container-web">
   <div class="row no-gutters content-primary">
-    <div class="col-md-6 col-lg-6 col-xl-6" style="background-color: blueviolet">contentMessege</div>
+    <div class="col-md-6 col-lg-6 col-xl-6" style="background-color: white"><app-message [userLogin]="user"></app-message></div>
     <div class="col-md-6 col-lg-6 col-xl-6" style="background-color: greenyellow">
       <app-google-map></app-google-map>
       <div class="col-md-12 col-lg-12 col-xl-12">
@@ -8,5 +9,7 @@
       </div>
     </div>
   </div>
-    <div style="background-color: yellow">sendMessege</div>
+    <div style="background-color: yellow"><app-sendmessage [user]="user"></app-sendmessage></div>
 </div>
+
+

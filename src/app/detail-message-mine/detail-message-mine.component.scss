@@ -1,0 +1,30 @@
+.row{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    text-align: right;
+}
+
+p.self{
+    display: inline-block; 
+    background: #0000b3;
+    border-radius: 10px;
+    color:      white; 
+    padding: 5px; 
+   
+  
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    border-radius:50%;
+    -moz-border-radius:50%;
+    -webkit-border-radius:50%;
+    margin-top: 10px;
+
+}
+small{
+     font-size: 10px;
+      text-align: right;
+}

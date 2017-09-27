@@ -10,6 +10,8 @@ import { AgmCoreModule } from '@agm/core';
 import { MdNativeDateModule, MdDialogModule, MdInputModule, MdDatepickerModule, MdButtonModule} from '@angular/material';
 import { FormsModule, NgControl, ReactiveFormsModule }   from '@angular/forms';
 
+import {DatePipe} from "@angular/common";
+
 //config
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
@@ -24,11 +26,18 @@ import { SimpleFirebaseComponent } from './simple-firebase/simple-firebase.compo
 import { LoginPageComponent } from "./loginpage/loginpage.component";
 import { SimpleHomepageComponent } from './simple-homepage/simple-homepage.component';
 import { HomepageComponent } from './homepage/homepage.component';
+
 import { GoogleMapComponent } from './google-map/google-map.component';
 import { DetailPointUserComponent } from './detail-point-user/detail-point-user.component';
 import { DialogMakeAppointmentComponent } from './dialog-make-appointment/dialog-make-appointment.component';
 import { DetailPointAppointmentComponent } from './detail-point-appointment/detail-point-appointment.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+
+import { MessageComponent } from './message/message.component';
+import { DetailMessageComponent } from './detail-message/detail-message.component';
+import { DetailMessageMineComponent } from './detail-message-mine/detail-message-mine.component';
+import { SendmessageComponent } from './sendmessage/sendmessage.component';
+
 
 
 let config = new AuthServiceConfig([
@@ -57,10 +66,15 @@ export function provideConfig() {
     DetailPointUserComponent,
     DialogMakeAppointmentComponent,
     DetailPointAppointmentComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    MessageComponent,
+    DetailMessageComponent,
+    DetailMessageMineComponent,
+    SendmessageComponent
   ],
   entryComponents: [
     DialogMakeAppointmentComponent
+
   ],
   imports: [
     BrowserModule,
@@ -77,16 +91,16 @@ export function provideConfig() {
     MdDatepickerModule,
     MdInputModule,
     FormsModule,
+    MdButtonModule,
     MdNativeDateModule,
     MdButtonModule
-    
   ],
   providers: [{
     provide: AuthServiceConfig,
     useFactory: provideConfig
   },
   {provide: LOCALE_ID, useValue: 'en-US'},
-  CheckLoginService, AuthenticationService, GeoService],
+  CheckLoginService, AuthenticationService, GeoService,DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
