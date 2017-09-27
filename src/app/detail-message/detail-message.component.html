@@ -17,8 +17,7 @@
     </div>
 
     <div>
-
-      <p class="friend" [ngStyle]="{'color':message.color}">{{message.content}}</p>
+      <p class="friend" [ngStyle]="{'color':message.color}" [innerHTML]="message.content">{{message.content}}</p>
       <br>
 
     </div>

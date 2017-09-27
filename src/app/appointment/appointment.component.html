@@ -1,0 +1,11 @@
+<div class="row">
+  <div *ngFor="let data of datas | async" class="col-md-2 col-lg-2 col-sm-2" style="font-size: 15px">
+    <div *ngIf="(data.dateTime|date)===(today|date); then now else time_else"></div>
+    <ng-template #now><a href="#" style="color: blue">{{data.nameAppointment}}-{{data.dateTime|date}}</a></ng-template>
+    <ng-template #time_else>
+      <div *ngIf="(data.dateTime|date)>(today|date); then soon else late "></div>
+      <ng-template #soon><a href="#" style="color: green">{{data.nameAppointment}}</a></ng-template>
+      <ng-template #late><a href="#" style="color: red">{{data.nameAppointment}}</a></ng-template>
+    </ng-template>
+  </div>
+</div>

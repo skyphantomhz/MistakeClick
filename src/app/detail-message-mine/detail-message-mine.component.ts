@@ -16,4 +16,6 @@ export class DetailMessageMineComponent implements OnInit {
     this.color='';
   }
 
+
 }
+
