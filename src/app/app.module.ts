@@ -37,6 +37,8 @@ import { MessageComponent } from './message/message.component';
 import { DetailMessageComponent } from './detail-message/detail-message.component';
 import { DetailMessageMineComponent } from './detail-message-mine/detail-message-mine.component';
 import { SendmessageComponent } from './sendmessage/sendmessage.component';
+import {ColorPickerModule} from 'angular4-color-picker';
+
 
 
 
@@ -91,9 +93,11 @@ export function provideConfig() {
     MdDatepickerModule,
     MdInputModule,
     FormsModule,
+    ColorPickerModule,
     MdButtonModule,
     MdNativeDateModule,
     MdButtonModule
+>
   ],
   providers: [{
     provide: AuthServiceConfig,

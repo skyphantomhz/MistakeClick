@@ -2,7 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {DatePipe} from '@angular/common';
 import {SocialUser} from 'angular4-social-login';
-import {FormControl} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
+import {ColorPickerService} from 'angular4-color-picker';
 
 @Component({
   selector: 'app-sendmessage',
@@ -10,18 +11,23 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./sendmessage.component.scss']
 })
 export class SendmessageComponent implements OnInit {
+ 
   contenMessageControl = new FormControl();
   @Input() user: SocialUser;
-
+  @Input() color: string;
   content: any;
 
-  constructor(private db: AngularFireDatabase , private datePipe: DatePipe) {
+  constructor(private db: AngularFireDatabase , private datePipe: DatePipe,private cpService: ColorPickerService) {
+    this.color = '#0000FF';
   }
 
   ngOnInit() {
     
   }
   sendMessage() {
+
+    console.log('bam');
+    console.log('co mau: '+this.color);
     const sendmessage = this.db.list('/message');
     let content = this.detectLink();
     sendmessage.push({
@@ -31,7 +37,11 @@ export class SendmessageComponent implements OnInit {
       id: Date.now(),
       linkAva: this.user.photoUrl,
       userName: this.user.name,
+      color: this.color,
     });
+          this.contenMessageControl.reset();
+          this.color = '#0000FF';
+
     this.contenMessageControl.setValue("");
   }
   detectLink(): any {

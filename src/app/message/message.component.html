@@ -11,5 +11,12 @@
             <app-detail-message [message]="data"></app-detail-message>
         </ng-template>
 
+
+<div *ngFor="let data of datas | async">
+    <div *ngIf="data.userName === userLogin.name; else elseBlock">
+        <app-detail-message-mine [message]="data"></app-detail-message-mine>
     </div>
+    <ng-template #elseBlock><app-detail-message [message]="data"></app-detail-message></ng-template>
+
+</div>
 </div>

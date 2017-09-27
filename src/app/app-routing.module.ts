@@ -6,7 +6,10 @@ import { SimpleHomepageComponent } from "./simple-homepage/simple-homepage.compo
 import { CheckLoginService } from "./services/check-login.service";
 import { HomepageComponent } from "./homepage/homepage.component";
 
+
 const routes: Routes = [
+   
+
 
   {
     path: '',

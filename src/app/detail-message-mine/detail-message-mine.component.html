@@ -15,8 +15,14 @@
 
     <div>
 
-      <p class="self" [innerHTML]="message.content"></p>
-      <br>
+      <div *ngIf="message.color === '#fff'; then ifColor else elseColor"></div>
+        <ng-template #ifColor> <p class="self" style="background-color: #0000FF" [innerHTML]="message.content"></p></ng-template>
+        
+      
+      <ng-template #elseColor>
+        <p class="self" [ngStyle]="{'background-color':message.color}" [innerHTML]="message.content"></p></ng-template>
+  
+    
 
     </div>
 
