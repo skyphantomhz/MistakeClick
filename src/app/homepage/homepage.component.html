@@ -1,7 +1,12 @@
-<div class="row no-gutters">
-  <div class="col-md-8 col-lg-8 col-xl-8" style="background-color: white">
-    <app-message [userLogin]="user"></app-message>
+<div id="container-web">
+  <div class="row no-gutters content-primary">
+    <div class="col-md-8 col-lg-8 col-xl-8" style="background-color: white"><app-message [userLogin]="user"></app-message></div>
+    <div class="col-md-4 col-lg-4 col-xl-4" style="background-color: greenyellow">
+      <app-google-map></app-google-map>
+      <div class="col-md-12 col-lg-12 col-xl-12">
+        <app-appointment></app-appointment>
+      </div>
+    </div>
   </div>
-  <div class="col-md-4 col-lg-4 col-xl-4" style="background-color: green">Map</div>
+    <div style="background-color: #D2DBEE"><app-sendmessage [user]="user"></app-sendmessage></div>
 </div>
-<div style="background-color: #D2DBEE"><app-sendmessage [user]="user"></app-sendmessage></div>

@@ -13,9 +13,8 @@ export class SimpleHomepageComponent implements OnInit {
 
   private user: SocialUser;
   private loggedIn: boolean;
-  private logout: boolean;
+
   constructor(private authService: AuthService, private router: Router, private authenticationService: AuthenticationService) {
-    this.logout = false;
     this.authService.authState.subscribe((user) => {
       this.user = user;
       this.loggedIn = (user != null);
