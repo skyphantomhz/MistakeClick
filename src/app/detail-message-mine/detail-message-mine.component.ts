@@ -13,4 +13,6 @@ export class DetailMessageMineComponent implements OnInit {
   ngOnInit() {
   }
 
+
 }
+

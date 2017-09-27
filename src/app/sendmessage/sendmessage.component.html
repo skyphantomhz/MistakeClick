@@ -1,7 +1,12 @@
-<form class="example-form">
-  <md-form-field class="example-full-width">
-    <input mdInput placeholder="....." [formControl]="contenMessageControl" >
-  </md-form-field>
-</form>
-<button md-button (click)="sendMessage()">Send</button>
+<div class="fm-send">
+  <div class="row">
+      <form class="example-form col-md-8 col-lg-8 col-xl-8">
+          <md-form-field class="example-full-width">
+            <input id="inputMess" mdInput placeholder="" [formControl]="contenMessageControl" >
+          </md-form-field>
+        </form>
+        <button class="col-md-4 col-lg-4 col-xl-4" md-button (click)="sendMessage()">Send</button>
+  </div>
+</div>
+
 
