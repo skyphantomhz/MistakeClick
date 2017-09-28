@@ -1,10 +1,10 @@
-<div *ngIf="lat && lng && user">
+<div *ngIf="lat && lng && userObject">
   <span class="logout" (click)="signOut()">Logout</span>
   
   <agm-map [latitude]="lat" [longitude]='lng' (mapClick)="placeMarker($event)">
     <agm-marker [latitude]="lat" [longitude]='lng'>
       <agm-info-window [disableAutoPan]="false">
-          <app-detail-point-user [detailPoint]="user"></app-detail-point-user>
+          <app-detail-point-user [detailPoint]="userObject"></app-detail-point-user>
       </agm-info-window>
     </agm-marker>
     <agm-marker *ngFor="let marker of markers"

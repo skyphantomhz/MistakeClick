@@ -97,7 +97,6 @@ export function provideConfig() {
     MdButtonModule,
     MdNativeDateModule,
     MdButtonModule
->
   ],
   providers: [{
     provide: AuthServiceConfig,

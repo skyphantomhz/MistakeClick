@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements OnInit {
-  @Input() userLogin;
+  userLogin: String;
   datas: FirebaseListObservable<Message[]>;
   numberClickMessage : number = 2 ;
 
@@ -20,6 +20,7 @@ export class MessageComponent implements OnInit {
   @ViewChild('scroller') private feedContainer: ElementRef;
 
   constructor(private db: AngularFireDatabase) {
+    this.userLogin = localStorage.getItem('currentUser')
   }
   ngOnInit() {
     this.datas=null;

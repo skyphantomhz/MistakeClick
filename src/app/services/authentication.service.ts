@@ -7,7 +7,12 @@ export class AuthenticationService {
   constructor() { }
 
   completedLogin(user: SocialUser){
-    localStorage.setItem('currentUser', JSON.stringify({username: user.name}));
+    localStorage.setItem('currentUser', user.name);
+    localStorage.setItem('informationUser', JSON.stringify({
+      "name": user.name,
+      "photoUrl": user.photoUrl,
+      "email": user.email
+    }));
     if (localStorage.getItem('currentUser')) {
       this.setLogin(true);
     } else {
@@ -18,6 +23,7 @@ export class AuthenticationService {
   logout(): void {
     // clear token remove user from local storage to log user out
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('informationUser');
     this.check=false;
   }
 

@@ -23,7 +23,7 @@ export class GoogleMapComponent implements OnInit {
   users: any;
   items: FirebaseListObservable<Users[]>;
 
-  private user: SocialUser;
+  private userObject: SocialUser;
   private loggedIn: boolean;
 
   apppointmentNeedSave: Appointment;
@@ -31,29 +31,23 @@ export class GoogleMapComponent implements OnInit {
   appointments: FirebaseListObservable<Appointment[]>;
 
   constructor(private db: AngularFireDatabase,private geo: GeoService,private authService: AuthService, private router: Router, private authenticationService: AuthenticationService,private dialog: MdDialog) {
-    this.authService.authState.subscribe((user) => {
-      this.user = user;
-      this.loggedIn = (user != null);
-    });
-
+    this.userObject = JSON.parse(localStorage.getItem('informationUser'));
     this.items = db.list('/users');
     this.items.forEach(item => {
         console.log('Item:', item);
     });
-    this.users = db.object('/users/'+this.user.name);
+    this.users = db.object('/users/'+localStorage.getItem('currentUser'));
     if(navigator.geolocation){
       navigator.geolocation.getCurrentPosition(position =>{
         this.lat = position.coords.latitude;
         this.lng = position.coords.longitude;
-        this.users.set({ email: this.user.email,
-                          link: this.user.photoUrl,
+        this.users.set({ email: this.userObject.email,
+                          link: this.userObject.photoUrl,
                           lat: this.lat,
                           lng: this.lng,
-                          name: this.user.name}); 
+                          name: this.userObject.name}); 
       })
     }
-    console.log(this.user);
-
   }
   ngOnInit() {
     this.getUserLocation();
