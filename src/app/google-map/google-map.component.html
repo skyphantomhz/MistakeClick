@@ -1,0 +1,35 @@
+<div *ngIf="lat && lng && userObject">
+  <span class="logout" (click)="signOut()">Logout</span>
+  
+  <agm-map [latitude]="lat" [longitude]='lng' (mapClick)="placeMarker($event)">
+    <agm-marker [latitude]="lat" [longitude]='lng'>
+      <agm-info-window [disableAutoPan]="false">
+          <app-detail-point-user [detailPoint]="userObject"></app-detail-point-user>
+      </agm-info-window>
+    </agm-marker>
+    <agm-marker *ngFor="let marker of markers"
+     [latitude]="marker.location[0]"
+     [longitude]="marker.location[1]"
+     [iconUrl]="'https://cdn1.iconfinder.com/data/icons/designer-s-tools-1/512/Coffee-64.png'">
+     <agm-info-window>
+       <h6>appointment!</h6>
+     </agm-info-window>
+    </agm-marker>
+    <agm-marker *ngFor="let appointment of appointments | async"
+    [latitude]="appointment.lat"
+    [longitude]="appointment.lng"
+    [iconUrl]="'assets/icon/pinappointment.png'">
+    <agm-info-window>
+      <app-detail-point-appointment [detailAppointment]="appointment"></app-detail-point-appointment>
+    </agm-info-window>
+   </agm-marker>
+   <agm-marker *ngFor="let item of items | async"
+   [latitude]="item.lat"
+   [longitude]="item.lng"
+   [iconUrl]="'https://cdn1.iconfinder.com/data/icons/designer-s-tools-1/512/Coffee-64.png'">
+   <agm-info-window>
+     <h6><img [src]="item.link" style="width: 100%; height: 100%" alt=""></h6>
+   </agm-info-window>
+  </agm-marker>
+  </agm-map>
+</div>

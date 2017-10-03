@@ -13,4 +13,12 @@ export const environment = {
     storageBucket: "",
     messagingSenderId: "554888823472"
   },
+  
+  googleMapsKey: "AIzaSyCoH8CWRcdupbhcdECOTLvFlF-SeJ3qM54",
+
+  googleApi:"554888823472-lagaqqu8bd1iamiid39t9o6vff5ro8lu.apps.googleusercontent.com",
+
+  facebookApi:"136643413621286",
+
+
 };

@@ -1,0 +1,15 @@
+<div #scroller class="chatlogs">
+    <div id="fm-older" class="btn-older">
+        <a (click)="loadMessageOld()">older</a>
+    </div>
+
+    <div *ngFor="let data of datas | async">
+        <div *ngIf="data.userName === userLogin; else elseBlock">
+            <app-detail-message-mine [message]="data"></app-detail-message-mine>
+        </div>
+        <ng-template #elseBlock>
+            <app-detail-message [message]="data"></app-detail-message>
+        </ng-template>
+
+    </div>
+</div>
